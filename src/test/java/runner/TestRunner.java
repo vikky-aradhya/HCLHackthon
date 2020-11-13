@@ -26,6 +26,7 @@ import stepDefinitions.BasePage;
 
 public class TestRunner {
 	
+	//before class
 	@BeforeClass
 	public static void setUp() {
 		BasePage.init_extentReport();
