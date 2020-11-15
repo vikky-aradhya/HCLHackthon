@@ -17,7 +17,6 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.frontendtest.components.ImageComparison;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
@@ -78,12 +77,12 @@ public class HomePageOperations extends HomePage {
 			String diffSS = System.getProperty("user.dir")+"/src/test/resources/Difference.jpg";
 			
 			
-			ImageComparison imageComparison = new ImageComparison(10,10,0.05);
+			//ImageComparison imageComparison = new ImageComparison(10,10,0.05);
 			
-			if(imageComparison.fuzzyEqual(expectedSS, actualSS, diffSS))
-			System.out.println("Images are Matched");
-			else
-			System.out.println("Images are not Matched");
+//			if(imageComparison.fuzzyEqual(expectedSS, actualSS, diffSS))
+//			System.out.println("Images are Matched");
+//			else
+//			System.out.println("Images are not Matched");
 		}
 		
 		catch(Exception e) {
