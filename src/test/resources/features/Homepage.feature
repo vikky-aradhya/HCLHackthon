@@ -1,9 +1,6 @@
 
 Feature: Login into an application
 
-  Background: User Navigates to application
-    When User opens browser
-
   @Login_user
   Scenario: Login
     Given Login page is loaded

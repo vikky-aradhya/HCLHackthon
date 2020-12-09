@@ -156,13 +156,13 @@ public class HomePageOperations extends HomePage {
 	public void enterBuildDetails() {
 		try {
 			JavascriptExecutor js = (JavascriptExecutor) driver;
-			js.executeScript("arguments[0].scrollIntoView();", getFirstNameTxtBox());
+			//js.executeScript("arguments[0].scrollIntoView();", getFirstNameTxtBox());
 			getFirstNameTxtBox().sendKeys("Vikas");
 			getLastNameTxtBox().sendKeys("NK");
 			getOrgNameTxtBox().sendKeys("ACC");
 			getPhoneTxtBox().sendKeys("123456789");
 			getEmailTxtBox().sendKeys("vikas@test.com");
-			getMessageTxtBox().sendKeys("Nothing");
+			//getMessageTxtBox().sendKeys("Nothing");
 		}
 		
 		catch(Exception e) {
@@ -173,6 +173,7 @@ public class HomePageOperations extends HomePage {
 	
 	public void navigateToTestimonial() {
 		try {
+			Thread.sleep(3000);
 			basePage.mouseHover(getAboutUsTab());
 			Thread.sleep(3000);
 			getTestimonialOption().click();

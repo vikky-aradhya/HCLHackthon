@@ -3,6 +3,7 @@ package stepDefinitions;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -13,8 +14,9 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -29,15 +31,21 @@ public class BasePage {
 	public static ExtentReports extentReporter;
 	public static ExtentTest extentTest;
 	
-	public void openBrowser() throws Throwable {
-		driver = new ChromeDriver();
-		driver.manage().window().maximize();
+	public void openBrowser(String browserName) throws Throwable {
+		if(browserName.equalsIgnoreCase("chrome")) {
+			driver = new RemoteWebDriver(new URL("http:localhost:4444/wd/hub"), DesiredCapabilities.chrome());
+			driver.manage().window().maximize();
+		}
+		else if(browserName.equalsIgnoreCase("firefox")) {
+			driver = new RemoteWebDriver(new URL("http:localhost:4444/wd/hub"), DesiredCapabilities.firefox());
+			driver.manage().window().maximize();
+		}
 	}
 	
 	public void navigateToUrl() throws Exception {
 		init_properties();
 		driver.get(property.getProperty("url"));
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	}
 	
 	public Properties init_properties() {

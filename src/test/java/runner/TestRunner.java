@@ -1,18 +1,14 @@
 package runner;
 
-import java.io.File;
-import java.io.IOException;
-
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
-
-import com.cucumber.listener.Reporter;
-import com.google.common.io.Files;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
+import cucumber.api.testng.AbstractTestNGCucumberTests;
 import stepDefinitions.BasePage;
+import stepDefinitions.LoginPage;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
@@ -24,17 +20,17 @@ import stepDefinitions.BasePage;
 		dryRun = false
 		)
 
-public class TestRunner {
-	
-	//before class
-	@BeforeClass
-	public static void setUp() {
+public class TestRunner extends AbstractTestNGCucumberTests {
+		
+	@BeforeSuite
+	public static void setUp() throws Throwable {
+		new LoginPage().user_opens_browser("chrome");
 		BasePage.init_extentReport();
 	}
 	
-	@AfterClass
+	@AfterSuite
 	public static void tearDown() {
-        BasePage.driver.quit();
+        //BasePage.driver.quit();
         BasePage.generateExtentReport();
 	}
 	
